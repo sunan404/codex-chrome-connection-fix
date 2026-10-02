@@ -1,0 +1,20 @@
+{
+  "name": "sunzus",
+  "interface": {
+    "displayName": "Sunzus Plugins"
+  },
+  "plugins": [
+    {
+      "name": "academic-paper-reviewer",
+      "source": {
+        "source": "local",
+        "path": "./academic-paper-reviewer"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

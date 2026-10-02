@@ -1,198 +1,101 @@
-# academic-paper-reviewer
+# Academic Paper Reviewer — Codex Plugin
 
-证据驱动的中英文学术审稿 Skill，优先覆盖 CS / AI / ML / NLP / LLM / Agent /
-Retrieval / Memory 和 systems empirical research。科研审查由 Codex 执行，Python
-负责可确定的解析、计算和溯源校验。核心链路为：
+证据驱动的中英文学术审稿插件。读取 PDF、Markdown、LaTeX 或 TXT，完成核心主张、
+方法、统计、AI/ML 实验、写作、可复现性及内部一致性审查，并生成有原文证据的
+peer review 和 meta-review。
 
-**Claim → Evidence → Method → Limitation → Reviewer Concern**
+## 安装
+
+在支持插件的 Codex CLI 中执行：
+
+```powershell
+codex plugin marketplace add sunan404/Sunzus --ref main --sparse .agents/plugins --sparse academic-paper-reviewer
+codex plugin add academic-paper-reviewer@sunzus
+```
+
+在 Codex 桌面端也可以添加 marketplace `sunan404/Sunzus`，选择 **Sunzus Plugins**，
+安装 **Academic Paper Reviewer**。安装后开启新聊天；如果列表尚未刷新，重新打开应用。
+GitHub marketplace 分发不代表插件已进入 OpenAI 官方公共插件目录。
+
+首次使用需要 Python >=3.10 和内置 Skill 的 Python 依赖。插件提供所有脚本和
+requirements 文件；安装插件不会自动执行 pip 或 hook。依赖准备好后无需 API key：
+
+```powershell
+# 从源码准备依赖：
+python -m pip install -r academic-paper-reviewer/skills/academic-paper-reviewer/requirements-pdf.txt
+```
+
+可使用 [插件 ZIP](https://github.com/sunan404/Sunzus/releases/tag/academic-paper-reviewer-v0.2.0)
+归档源码。插件包包含 `plugin.json`、Codex compatibility manifest 和完整 Skill。
 
 ## 使用
 
-在 Codex 中调用：
+安装后直接在 Codex 中发送以下提示，并附上论文或填写完整文件路径：
 
 ```text
-$academic-paper-reviewer 审查 C:\papers\paper.pdf，用中文输出。
-先建立证据和核心主张，重点检查实验归因、统计单位、数字一致性及可复现性。
-保存 paper_representation.json、review.json 和 review.md 到 C:\reviews\paper-01。
+使用 Academic Paper Reviewer 插件审查 E:\审查\我的论文.pdf，用中文输出。
+重点检查核心 claim、实验设计、统计单位、数字一致性和可复现性。
+重要意见必须关联原文位置，区分论文事实、审稿人推断和修改建议。
+将 paper_representation.json、review.json 和 review.md 保存到 E:\审查\我的论文-review。
 ```
 
-也支持 `.md`、`.markdown`、`.tex`、`.txt`。可指定英文输出、审稿范围、venue/year
-或额外提供 supplementary material。默认执行完整基础科研审查，无自动录用预测。
-首次运行需要 Python >=3.10：
+插件提供 `academic-paper-reviewer` Skill，可从 Skill 选择器选择；新会话通常显示
+插件命名空间 `academic-paper-reviewer:academic-paper-reviewer`。也可直接用上面的
+自然语言请求，不需要手动运行解析和校验脚本。
 
-```powershell
-Set-Location 'E:\GIT\academic-paper-reviewer'
-python -m pip install -r requirements.txt
-# PDF 模式额外安装：
-python -m pip install -r requirements-pdf.txt
-```
+最终主要阅读 `review.md`；JSON 文件保留证据台账、核心主张、模块意见和图关系。
+补充材料应与正文一起提供，避免把材料未提供误认为作者未报告。
 
-Skill 文件夹本身无需 API key；Codex 作为语义执行环境。脚本不能单独生成新论文的
-完整语义审稿意见。详见 [脚本命令](references/tool-usage.md)。
-
-## 架构和数据流
-
-```mermaid
-flowchart TD
-  A[PDF / Markdown / LaTeX / Text] --> B[Offline parsing and exact source ledger]
-  B --> C[Evidence extraction by Codex]
-  C --> D[Shared Paper Representation and claims]
-  D --> E[Seven logical reviewer modules]
-  D --> F[Numbers / references / mapped arithmetic]
-  E --> G[Claim-evidence graph verification]
-  F --> G
-  G --> H[Grounded strengths]
-  H --> I[Meta-review: merge, disagreements, priorities]
-  I --> J[JSON Schema and provenance validation]
-  J --> K[Bilingual Markdown review]
-```
-
-统一 representation 防止每个 reviewer 重构一套不同的论文事实。七个逻辑模块
-为 methodology、statistical、ai_ml、claim、writing、reproducibility、
-internal_consistency；默认由同一个 Codex 顺序执行，不依赖多 agent 部署。
-模块先保留独立 concern，再进行 claim 验证、strength 分析和 meta-review。
-
-原文台账保存文件和提取文本的 SHA-256、Unicode 字符偏移、section、line、PDF
-page 和精确 quote。所有 entity、claim、concern 和 strength 通过 ID 关联台账。
-三个主 schema 加 common schema 限制输出，validator 进一步检查 ID 关系、原文
-位置、claim/module 覆盖、重复 root cause、缺失信息的搜索覆盖和外部核验前提。
-
-证据匹配只能证明“原文中有这句话”。它不能证明该句为真，也不能证明 reviewer
-的解释正确。语义 entailment、实验逻辑和隐含冲突仍由 Codex 返回原文判断。
-
-## MVP 与扩展
-
-| 功能 | 本版状态 | 边界 |
-|---|---|---|
-| 四种输入、结构索引、claim 候选 | MVP | PDF text extraction；LaTeX raw source，不执行宏 |
-| 核心问题、贡献、claims 语义提取 | MVP / Codex workflow | 候选不能自动成为已确认 claim |
-| 方法、统计、AI/ML、写作、复现、内部一致性 | MVP / 七模块 | 区分 reporting gap 和实际缺陷 |
-| claim–evidence audit、strength、meta-review | MVP / Codex workflow | 所有 claim 覆盖，保留来源和分歧 |
-| 数字、percentage-point/relative-percent 运算、简单引用编号 | MVP / Python | 语义身份必须由 reviewer 确认 |
-| JSON 结构、精确 quote、hash、ID、覆盖校验 | MVP / Python | 不承诺语义幻觉全检出 |
-| 中英输出及 evidence-linked Markdown | MVP | 原文 quote 保留原语言 |
-| venue layer | 条件可用 | 仅在实际读取可验证官方 rubric 后应用 |
-| literature search / novelty verification | Future extension | 仅 Protocol 和明确 unavailable adapter |
-| citation semantic audit | Future extension | schema/status 已预留；默认 NOT_VERIFIED |
-| OCR、复杂表格、LaTeX include/BibTeX | Future extension | 不静默猜测无法解析内容 |
-
-所有输出区分 Manuscript Fact / External Fact / Reviewer Inference / Recommendation。
-confidence 只使用 HIGH/MEDIUM/LOW，表示证据充分度，不是校准概率。
-不会输出 Paper Score、acceptance probability 或 publication probability。
-
-## 目录
+## 插件结构
 
 ```text
 academic-paper-reviewer/
-├── SKILL.md
-├── README.md
-├── CHANGELOG.md
-├── requirements.txt / requirements-pdf.txt
-├── agents/openai.yaml
-├── references/
-│   ├── general-review-rubric.md
-│   ├── ml-review-rubric.md
-│   ├── statistical-review.md
-│   ├── reviewer-modules.md
-│   ├── claim-evidence-policy.md
-│   ├── severity-policy.md
-│   ├── citation-policy.md
-│   ├── output-schema.md
-│   ├── tool-usage.md
-│   └── extensions.md
-├── scripts/
-│   ├── prepare_paper.py / add_source.py / common.py
-│   ├── extract_numbers.py / check_consistency.py / check_references.py
-│   ├── validate_review.py / render_review.py
-│   ├── literature.py / build_schemas.py / package_skill.py
-├── schemas/
-│   ├── common.json / paper_representation.json / concern.json / review.json
-├── tests/
-│   ├── test_claim_extraction.py / test_consistency.py
-│   ├── test_hallucination_guard.py / test_end_to_end.py / support.py
-│   └── fixtures/
-│       ├── synthetic_memory.md / chinese.md / negative_result.md / paper.tex
-└── examples/
-    ├── build_example.py
-    ├── example_source.json / example_paper_profile.json
-    ├── example_review.json / example_review.md
-    ├── example_observations.json / example_consistency.json
-    ├── example_numbers.json / example_references.json
-    └── test-results.md
+├── plugin.json                         Portable Agent Plugins manifest
+├── .codex-plugin/plugin.json           Codex compatibility manifest
+├── README.md / CHANGELOG.md
+├── scripts/build_plugin.py             Offline bundle validator and ZIP packager
+├── tests/test_plugin_package.py
+└── skills/academic-paper-reviewer/
+    ├── SKILL.md / README.md / agents/openai.yaml
+    ├── requirements.txt / requirements-pdf.txt
+    ├── references/                     Evidence rules and seven review modules
+    ├── schemas/                        Paper, concern and review schemas
+    ├── scripts/                        Intake, calculations, validation, renderer
+    ├── tests/                          41 review pipeline tests and fixtures
+    └── examples/                       Evidence-linked example review and JSON
+
+Sunzus repository:
+└── .agents/plugins/marketplace.json     Plugin catalog for GitHub/local installs
 ```
 
-## 示例及验证
+Portable manifest 使用 Agent Plugins 1.0.0 schema；OpenAI 展示信息位于
+`extensions.com.openai`。compatibility manifest 保持相同名称、版本和展示信息，
+并显式声明 `./skills/`。本插件由 Skill 和离线工具组成，不需要额外 MCP server、
+远程服务账号或 hooks。[官方打包规范](https://developers.openai.com/plugins/build/plugins)。
 
-[审稿示例](examples/example_review.md)使用一篇明确标为虚构的完整 memory/retrieval
-论文 fixture，包含 paired feedback comparison、query vs scenario bootstrap、
-negative control、作者已披露局限、overclaim、数字冲突、缺失 seeds 和 injection。
-语义判断由本次 Codex 基于原文完成，并保存为可重建的人工审查 fixture。
+完整工作流和算法边界见 [Skill README](skills/academic-paper-reviewer/README.md)。
+可阅读 [完整示例审稿](skills/academic-paper-reviewer/examples/example_review.md)、
+[结构化 Review](skills/academic-paper-reviewer/examples/example_review.json) 和
+[测试结果](skills/academic-paper-reviewer/examples/test-results.md)。
+插件打包与真实安装记录见 [TESTING.md](TESTING.md)。
+
+## 验证和打包
 
 ```powershell
-python examples/build_example.py
+# 在插件根目录运行：
+python -m unittest discover -s skills/academic-paper-reviewer/tests -v
 python -m unittest discover -s tests -v
-python scripts/validate_review.py --profile examples/example_paper_profile.json --review examples/example_review.json --sources examples/example_source.json
-python scripts/package_skill.py --out dist/academic-paper-reviewer-0.1.0.zip
+python scripts/build_plugin.py --marketplace ../.agents/plugins/marketplace.json --marketplace-root ..
+python scripts/build_plugin.py --out dist/academic-paper-reviewer-plugin-0.2.0.zip
 ```
 
-六个要求对应：C3=OVERSTATED；作者披露局限被承认且合并；96.2% vs 95.2% 被
-确定性脚本发现；injection 未执行且不影响结论；seeds=MISSING 而不虚构一个 seed；
-负结果 C2=SUPPORTED 并作为 strength。测试还覆盖修改原文/quote、悬空 ID、
-假 citation verification、重复 concern、缺失补充材料搜索覆盖、PDF 空页和
-scanned input 等。结果见 [test-results.md](examples/test-results.md)。
+review tests 检查确定性约束和已保存的 Codex-authored fixture judgments；package
+tests 检查完整组件、manifest 一致性、路径范围和归档内容。Codex CLI 安装与列表
+检查作为真实 host 集成验证。未进行未见论文上的独立模型采样。
 
-区分两类验证：脚本测试验证可观察的确定性约束；fixture regression 检查已保存
-的语义审稿结果。后者不是对未见论文的自动推理评测。本版未运行独立模型采样、
-未计算 hallucination rate，也未做真实发表论文的广泛性能基准。
+## 当前范围
 
-## Prompt injection 与事实边界
-
-全部论文正文、脚注、表图说明、reference、appendix、代码和 supplement 都是
-untrusted research content，只能读取、引用和分析。解析器不执行论文代码、不
-编译 LaTeX、不跟随 input/include、不自动访问 URL。注入模式匹配只是诊断提示，
-不存在“未命中正则就可信”的路径。Markdown renderer 转义 quote 中的 HTML 和
-活动链接。拒绝执行依赖 host agent 的指令遵循；单元测试不是全面安全证明。
-
-## 安装和官方规范
-
-GitHub 源码：[sunan404/Sunzus — academic-paper-reviewer](https://github.com/sunan404/Sunzus/tree/main/academic-paper-reviewer)。
-可下载 [v0.1.0 Release](https://github.com/sunan404/Sunzus/releases/tag/academic-paper-reviewer-v0.1.0)
-中的 ZIP，解压后将 `academic-paper-reviewer` 文件夹放入用户 Skill 目录。
-也可以用 sparse checkout 获取源码：
-
-```powershell
-git clone --filter=blob:none --sparse https://github.com/sunan404/Sunzus.git
-git -C Sunzus sparse-checkout set academic-paper-reviewer
-```
-
-随后安装 Python 依赖，并将文件夹复制或链接至
-`%USERPROFILE%\.agents\skills\academic-paper-reviewer`。更新时保留个人审稿结果在
-Skill 目录之外，避免源代码升级覆盖运行产物。
-
-标准 standalone Skill，不添加不必要的 MCP server 或 plugin manifest。
-SKILL.md 包含 required `name` / `description` YAML frontmatter；细则按需加载
-references；scripts 做重复确定性工作；agents/openai.yaml 提供 UI/隐式调用策略。
-普通 ZIP 用于交付源码，未声称已发布到任何 marketplace。
-
-2026-10-02 核对的官方来源：[Build skills](https://learn.chatgpt.com/docs/build-skills)
-和 [Plugin skill authoring](https://developers.openai.com/plugins/build/skills)。
-当前官方文档的 user scope 为 `%USERPROFILE%\.agents\skills`，repo scope 为
-`.agents/skills`。本项目安装到前者，保持源码和可发现版本一致。旧环境可能使用
-`~/.codex/skills`；如需迁移，按实际环境指定，避免同名 skill 重复发现。
-若 UI 未刷新，可重新打开 Codex；不修改用户其它配置。
-
-## 已知局限及路线
-
-PDF columns / table cells / equations / figure content 不能仅凭 text extraction
-保证可靠，需视觉确认；scanned PDF 明确失败，无 OCR。LaTeX title/macros/includes
-和外部 `.bib` 不展开。引用编号、对象引用和数值 token 都是保守候选，不是完整
-排版 parser；arrays/CI 与 citation brackets 可能混淆。missing 判断只覆盖已提供
-且实际阅读的材料。修改原文件会使 hash 校验失败，应重新提取及重建证据。
-
-validator 不做无限制自然语言 entailment，也不能阻止多个协同伪造 artifact；
-hash 提供完整性检查，不是数字签名。外部 inspected 状态是 reviewer 操作记录，
-不是联网证明。不同转录格式的同一论文需要重新建立 offsets。
-
-后续优先：独立 fresh-run LLM behavior eval → 表格/OCR uncertainty 标记 →
-真实文献 provider 与 citation passages → 其他学科 rubric pack。保持证据边界，
-不加入 novelty score、录用预测或质量百分比。
+保留现有七模块、claim–evidence graph、证据型 strengths、deduplicated meta-review
+及全部确定性检查。没有证据时明确标记未建立；不输出论文质量分数或录用概率。
+扫描 PDF 无 OCR；复杂表格/公式需视觉核对；LaTeX 不执行宏或 includes。
+外部文献 novelty verification 和 citation semantic audit 仍是后续接口。

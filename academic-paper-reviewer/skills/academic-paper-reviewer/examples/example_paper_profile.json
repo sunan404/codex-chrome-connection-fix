@@ -10,7 +10,7 @@
   "sources": [
     {
       "source_id": "manuscript",
-      "path": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md",
+      "path": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md",
       "text_sha256": "bc798b4a4b1f405d89f90317b0136398d789df4870e2f9ca77533013f5de8b93",
       "file_sha256": "bc798b4a4b1f405d89f90317b0136398d789df4870e2f9ca77533013f5de8b93"
     }
@@ -26,7 +26,7 @@
       "section": "Abstract",
       "page": null,
       "line": 4,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 4"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 4"
     },
     {
       "evidence_id": "E2",
@@ -38,7 +38,7 @@
       "section": "1 Introduction",
       "page": null,
       "line": 7,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 7"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 7"
     },
     {
       "evidence_id": "E3",
@@ -50,7 +50,7 @@
       "section": "1 Introduction",
       "page": null,
       "line": 8,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 8"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 8"
     },
     {
       "evidence_id": "E4",
@@ -62,7 +62,7 @@
       "section": "2 Method",
       "page": null,
       "line": 11,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 11"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 11"
     },
     {
       "evidence_id": "E5",
@@ -74,7 +74,7 @@
       "section": "2 Method",
       "page": null,
       "line": 12,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 12"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 12"
     },
     {
       "evidence_id": "E6",
@@ -86,7 +86,7 @@
       "section": "2 Method",
       "page": null,
       "line": 13,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 13"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 13"
     },
     {
       "evidence_id": "E7",
@@ -98,7 +98,7 @@
       "section": "2 Method",
       "page": null,
       "line": 14,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 14"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 14"
     },
     {
       "evidence_id": "E8",
@@ -110,7 +110,7 @@
       "section": "2 Method",
       "page": null,
       "line": 15,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 15"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 15"
     },
     {
       "evidence_id": "E9",
@@ -122,7 +122,7 @@
       "section": "2 Method",
       "page": null,
       "line": 16,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 16"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 16"
     },
     {
       "evidence_id": "E10",
@@ -134,7 +134,7 @@
       "section": "3 Evaluation",
       "page": null,
       "line": 19,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 19"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 19"
     },
     {
       "evidence_id": "E11",
@@ -146,7 +146,7 @@
       "section": "3 Evaluation",
       "page": null,
       "line": 20,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 20"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 20"
     },
     {
       "evidence_id": "E12",
@@ -158,7 +158,7 @@
       "section": "3 Evaluation",
       "page": null,
       "line": 21,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 21"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 21"
     },
     {
       "evidence_id": "E13",
@@ -170,7 +170,7 @@
       "section": "3 Evaluation",
       "page": null,
       "line": 22,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 22"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 22"
     },
     {
       "evidence_id": "E16",
@@ -182,7 +182,7 @@
       "section": "4 Results",
       "page": null,
       "line": 30,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 30"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 30"
     },
     {
       "evidence_id": "E17",
@@ -194,7 +194,7 @@
       "section": "4 Results",
       "page": null,
       "line": 31,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 31"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 31"
     },
     {
       "evidence_id": "E18",
@@ -206,7 +206,7 @@
       "section": "4 Results",
       "page": null,
       "line": 32,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 32"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 32"
     },
     {
       "evidence_id": "E19",
@@ -218,7 +218,7 @@
       "section": "5 Discussion",
       "page": null,
       "line": 35,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 35"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 35"
     },
     {
       "evidence_id": "E20",
@@ -230,7 +230,7 @@
       "section": "5 Discussion",
       "page": null,
       "line": 36,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 36"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 36"
     },
     {
       "evidence_id": "E21",
@@ -242,7 +242,7 @@
       "section": "6 Limitations",
       "page": null,
       "line": 39,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 39"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 39"
     },
     {
       "evidence_id": "E22",
@@ -254,7 +254,7 @@
       "section": "6 Limitations",
       "page": null,
       "line": 40,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 40"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 40"
     },
     {
       "evidence_id": "E23",
@@ -266,7 +266,7 @@
       "section": "6 Limitations",
       "page": null,
       "line": 41,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 41"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 41"
     },
     {
       "evidence_id": "E24",
@@ -278,7 +278,7 @@
       "section": "7 Conclusion",
       "page": null,
       "line": 44,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 44"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 44"
     },
     {
       "evidence_id": "E25",
@@ -290,7 +290,7 @@
       "section": "Appendix A: Untrusted Content Robustness Fixture",
       "page": null,
       "line": 47,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 47"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 47"
     },
     {
       "evidence_id": "E26",
@@ -302,7 +302,7 @@
       "section": "Appendix A: Untrusted Content Robustness Fixture",
       "page": null,
       "line": 48,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 48"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 48"
     },
     {
       "evidence_id": "E27",
@@ -314,7 +314,7 @@
       "section": "References",
       "page": null,
       "line": 51,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 51"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 51"
     },
     {
       "evidence_id": "E14",
@@ -326,7 +326,7 @@
       "section": "4 Results",
       "page": null,
       "line": 28,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 28"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 28"
     },
     {
       "evidence_id": "E15",
@@ -338,7 +338,7 @@
       "section": "4 Results",
       "page": null,
       "line": 29,
-      "location": "E:\\GIT\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 29"
+      "location": "E:\\GIT\\academic-paper-reviewer\\skills\\academic-paper-reviewer\\tests\\fixtures\\synthetic_memory.md:line 29"
     }
   ],
   "claims": [

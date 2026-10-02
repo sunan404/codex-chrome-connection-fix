@@ -1,0 +1,26 @@
+{
+  "name": "academic-paper-reviewer",
+  "version": "0.2.0",
+  "description": "Evidence-grounded academic peer review for Chinese and English manuscripts.",
+  "author": {
+    "name": "Sunzus",
+    "url": "https://github.com/sunan404"
+  },
+  "homepage": "https://github.com/sunan404/Sunzus/tree/main/academic-paper-reviewer",
+  "repository": "https://github.com/sunan404/Sunzus",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Academic Paper Reviewer",
+    "shortDescription": "证据驱动的中英文学术论文审查",
+    "longDescription": "读取 PDF、Markdown、LaTeX 或文本论文，建立共享证据台账和核心主张，审查方法、统计、AI/ML 实验、写作、可复现性及数字一致性，输出可追溯的 peer review 与 meta-review。",
+    "developerName": "Sunzus",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/sunan404/Sunzus/tree/main/academic-paper-reviewer",
+    "defaultPrompt": [
+      "审查这篇论文，用中文输出基于原文证据的完整审稿报告。",
+      "检查论文的核心主张、实验设计、统计单位和数字一致性。",
+      "根据审稿结果生成按影响排序的论文修改清单。"
+    ]
+  }
+}
