@@ -1,0 +1,60 @@
+{
+  "conflicts": [
+    {
+      "kind": "NUMERICAL_CONFLICT",
+      "identity": {
+        "metric": "known-query accuracy",
+        "dataset": "SimMem-v1",
+        "model": "D",
+        "split": "evaluation",
+        "unit": "percent",
+        "context": "equal-weight scenario mean"
+      },
+      "left": {
+        "metric": "known-query accuracy",
+        "dataset": "SimMem-v1",
+        "model": "D",
+        "split": "evaluation",
+        "unit": "percent",
+        "context": "equal-weight scenario mean",
+        "observation_id": "O1",
+        "value": "96.2",
+        "tolerance": "0.05",
+        "evidence_ids": [
+          "E1",
+          "E10"
+        ]
+      },
+      "right": {
+        "metric": "known-query accuracy",
+        "dataset": "SimMem-v1",
+        "model": "D",
+        "split": "evaluation",
+        "unit": "percent",
+        "context": "equal-weight scenario mean",
+        "observation_id": "O2",
+        "value": "95.2",
+        "tolerance": "0.05",
+        "evidence_ids": [
+          "E10",
+          "E15"
+        ]
+      },
+      "reasoning": "Same reviewer-confirmed quantity differs beyond specified rounding tolerance."
+    }
+  ],
+  "arithmetic": [
+    {
+      "calculation_id": "K1",
+      "computed": "24.68",
+      "reported": "24.68",
+      "evidence_ids": [
+        "E14",
+        "E15",
+        "E16"
+      ],
+      "status": "MATCH"
+    }
+  ],
+  "scope": "Only explicitly mapped quantities and specified calculations; no semantic contradiction detector."
+}

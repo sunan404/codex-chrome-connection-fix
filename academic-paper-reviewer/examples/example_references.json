@@ -1,0 +1,20 @@
+{
+  "numeric_citations": [],
+  "numeric_definitions": [
+    1
+  ],
+  "missing_numeric_references": [],
+  "duplicate_numeric_definitions": [],
+  "numeric_status": "CHECKED_SIMPLE_NUMBERING",
+  "undefined_latex_labels": [],
+  "undefined_cite_keys": [],
+  "latex_citation_status": "NOT_ESTABLISHED",
+  "object_reference_candidates": {
+    "table": [],
+    "figure": [],
+    "equation": []
+  },
+  "citation_verification": "NOT_VERIFIED",
+  "warnings": [],
+  "scope": "Simple patterns only. Numeric brackets may be intervals/arrays; captions may be missed. Confirm candidates manually. External .bib and includes are not followed."
+}

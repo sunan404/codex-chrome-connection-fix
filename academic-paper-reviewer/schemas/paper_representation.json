@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://academic-paper-reviewer.invalid/schemas/paper_representation.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "enum": [
+            "en",
+            "zh",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "paper_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_venue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "language",
+        "field",
+        "paper_type",
+        "target_venue"
+      ],
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "needs_semantic_extraction",
+        "extracted"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "file_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "source_id",
+          "path",
+          "text_sha256",
+          "file_sha256"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/evidence"
+      },
+      "minItems": 0
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/claim"
+      },
+      "minItems": 0
+    },
+    "extraction_warnings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "research_questions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "contributions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "baselines": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "statistical_methods": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "figures": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "$ref": "https://academic-paper-reviewer.invalid/schemas/common.json#/$defs/entity"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "metadata",
+    "status",
+    "sources",
+    "evidence",
+    "claims",
+    "extraction_warnings",
+    "research_questions",
+    "contributions",
+    "methods",
+    "datasets",
+    "baselines",
+    "metrics",
+    "experiments",
+    "statistical_methods",
+    "results",
+    "limitations",
+    "figures",
+    "tables",
+    "references"
+  ],
+  "additionalProperties": false
+}

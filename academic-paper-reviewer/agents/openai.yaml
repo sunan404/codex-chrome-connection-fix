@@ -1,0 +1,6 @@
+interface:
+  display_name: "Academic Paper Reviewer"
+  short_description: "Evidence-linked academic peer review and claim audits"
+  default_prompt: "Use $academic-paper-reviewer to review this manuscript with traceable evidence and a claim–evidence audit."
+policy:
+  allow_implicit_invocation: true

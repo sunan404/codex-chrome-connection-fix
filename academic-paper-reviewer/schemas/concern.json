@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://academic-paper-reviewer.invalid/schemas/concern.json",
+  "type": "object",
+  "properties": {
+    "concern_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "major",
+        "moderate",
+        "minor"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "methodology",
+        "statistical",
+        "ai_ml",
+        "claim",
+        "writing",
+        "reproducibility",
+        "internal_consistency"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "reasoning": {
+      "type": "string",
+      "minLength": 1
+    },
+    "impact": {
+      "type": "string",
+      "minLength": 1
+    },
+    "suggested_fix": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "information_type": {
+      "type": "string",
+      "enum": [
+        "manuscript_fact",
+        "reviewer_inference"
+      ]
+    },
+    "root_cause": {
+      "type": "string",
+      "minLength": 1
+    },
+    "affected_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "origin_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+    }
+  },
+  "required": [
+    "concern_id",
+    "severity",
+    "category",
+    "title",
+    "claim",
+    "evidence_ids",
+    "reasoning",
+    "impact",
+    "suggested_fix",
+    "confidence",
+    "information_type",
+    "root_cause",
+    "affected_scope",
+    "claim_ids",
+    "origin_ids",
+    "priority"
+  ],
+  "additionalProperties": false
+}

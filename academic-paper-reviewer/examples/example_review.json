@@ -1,0 +1,756 @@
+{
+  "schema_version": "1.0",
+  "language": "en",
+  "title": "Evidence-grounded review: Feedback-Guided Retrieval (fictional fixture)",
+  "review_confidence": "MEDIUM",
+  "executive_assessment": [
+    {
+      "text": "The manuscript evaluates usage feedback in a controlled memory simulator with twelve generated scenarios and paired ranking configurations. It reports a large D-versus-C difference in known-query retrieval, alongside a sham diagnostic whose scenario-level interval does not establish a practically relevant gain. These are measurements of a specified synthetic mechanism, and no natural-language interaction or pretrained embedding model is evaluated.",
+      "information_type": "manuscript_fact",
+      "evidence_ids": [
+        "E4",
+        "E5",
+        "E6",
+        "E16",
+        "E18"
+      ],
+      "external_source_ids": [],
+      "reasoning": ""
+    },
+    {
+      "text": "The strongest contribution is the interpretable feedback-only comparison, complemented by a pre-specified negative diagnostic and explicit disclosure of external-validity and bootstrap limitations. The negative result contributes useful information about measurement stability; its direction does not reduce the quality of that diagnostic design.",
+      "information_type": "reviewer_inference",
+      "evidence_ids": [
+        "E6",
+        "E9",
+        "E12",
+        "E18",
+        "E21",
+        "E22"
+      ],
+      "external_source_ids": [],
+      "reasoning": "Interpretation is confined to the cited manuscript passages."
+    },
+    {
+      "text": "The biggest uncertainty is how much of the apparent precision survives scenario-level resampling and how the synthetic effect transfers beyond this generator. The first conclusion sentence claims real-world assistant improvements despite the explicit generalization boundary. An abstract/table discrepancy additionally prevents confirmation of the intended aggregate accuracy. Review confidence is medium because the design and reporting issues are directly grounded, while raw results and executable artifacts are unavailable for independent reproduction.",
+      "information_type": "reviewer_inference",
+      "evidence_ids": [
+        "E1",
+        "E11",
+        "E15",
+        "E21",
+        "E23",
+        "E24"
+      ],
+      "external_source_ids": [],
+      "reasoning": "Interpretation is confined to the cited manuscript passages."
+    }
+  ],
+  "strengths": [
+    {
+      "strength_id": "S1",
+      "text": "C/D isolates the feedback term within paired generated scenarios.",
+      "evidence_ids": [
+        "E6",
+        "E7"
+      ],
+      "why_it_matters": "This directly targets the simulator-level contribution with an interpretable control, within the specified mechanism.",
+      "confidence": "HIGH",
+      "information_type": "reviewer_inference"
+    },
+    {
+      "strength_id": "S2",
+      "text": "The pre-specified sham diagnostic reports its uncertain negative result with paired scenario-level resampling.",
+      "evidence_ids": [
+        "E9",
+        "E12",
+        "E18"
+      ],
+      "why_it_matters": "A negative diagnostic can reveal measurement artifacts; the paper avoids claiming equivalence from an interval spanning zero.",
+      "confidence": "HIGH",
+      "information_type": "reviewer_inference"
+    },
+    {
+      "strength_id": "S3",
+      "text": "The manuscript explicitly discloses external-validity and resampling-unit limitations.",
+      "evidence_ids": [
+        "E21",
+        "E22"
+      ],
+      "why_it_matters": "Transparency makes the evidential boundary inspectable, even though the conclusion needs alignment.",
+      "confidence": "HIGH",
+      "information_type": "manuscript_fact"
+    }
+  ],
+  "concerns": [
+    {
+      "concern_id": "M1",
+      "severity": "major",
+      "category": "claim",
+      "title": "Conclusion exceeds the simulator evidence",
+      "claim": "The broad assistant-improvement statement is not established by this synthetic retrieval experiment.",
+      "evidence_ids": [
+        "E5",
+        "E6",
+        "E7",
+        "E19",
+        "E21",
+        "E24"
+      ],
+      "reasoning": "The conclusion's first sentence claims real-world transfer while the limitations explicitly rule out such generalization. The later qualification does not resolve the unconditional sentence. Authors explicitly acknowledge the external-validity boundary; the concern is the conflicting conclusion.",
+      "impact": "Readers may attribute end-to-end deployment benefits to a study that measures generated known-query retrieval only.",
+      "suggested_fix": "Limit the first conclusion sentence to SimMem-v1, or provide evidence testing the broader claim.",
+      "confidence": "HIGH",
+      "information_type": "reviewer_inference",
+      "root_cause": "unsupported_transfer",
+      "affected_scope": "C3",
+      "claim_ids": [
+        "C3"
+      ],
+      "origin_ids": [
+        "CL01",
+        "MD01"
+      ],
+      "priority": 1
+    },
+    {
+      "concern_id": "M2",
+      "severity": "major",
+      "category": "statistical",
+      "title": "Query bootstrap does not preserve scenario dependence",
+      "claim": "The reported D-minus-C interval does not establish uncertainty across independent generated scenarios.",
+      "evidence_ids": [
+        "E4",
+        "E11",
+        "E22"
+      ],
+      "reasoning": "Queries share state within twelve scenarios but are resampled as 12,000 independent outcomes. The authors disclose possible underestimation; the actual amount cannot be calculated without scenario-level data.",
+      "impact": "The effect magnitude is documented, but precision and inference beyond these scenarios remain uncertain.",
+      "suggested_fix": "Report paired scenario-level contrasts and an interval that preserves the independent scenario units.",
+      "confidence": "HIGH",
+      "information_type": "reviewer_inference",
+      "root_cause": "bootstrap_unit",
+      "affected_scope": "C1_interval",
+      "claim_ids": [
+        "C1"
+      ],
+      "origin_ids": [
+        "ST01"
+      ],
+      "priority": 2
+    },
+    {
+      "concern_id": "M3",
+      "severity": "moderate",
+      "category": "internal_consistency",
+      "title": "Abstract and table report different aggregate accuracy",
+      "claim": "D accuracy is 96.2% in the abstract and 95.2% in Table 1 for the same SimMem-v1 aggregate quantity.",
+      "evidence_ids": [
+        "E1",
+        "E10",
+        "E15"
+      ],
+      "reasoning": "Reviewer-confirmed metric/dataset/model/split/aggregation identities match, and the 1.0 percentage point difference exceeds rounding. The correct value cannot be adjudicated from these passages alone.",
+      "impact": "The discrepancy changes the reported gain if the abstract value is used. Table-based arithmetic is internally consistent.",
+      "suggested_fix": "Reconcile the source of the abstract number with Table 1 and update the affected summary.",
+      "confidence": "HIGH",
+      "information_type": "reviewer_inference",
+      "root_cause": "accuracy_mismatch",
+      "affected_scope": "D_aggregate",
+      "claim_ids": [
+        "C1"
+      ],
+      "origin_ids": [
+        "IN01"
+      ],
+      "priority": 2
+    },
+    {
+      "concern_id": "M4",
+      "severity": "moderate",
+      "category": "reproducibility",
+      "title": "Core simulation artifacts are not supplied",
+      "claim": "Exact seeds, code, per-scenario measurements and analysis scripts are not established in this supplied draft.",
+      "evidence_ids": [
+        "E13",
+        "E23"
+      ],
+      "reasoning": "The draft describes generator parameters and software versions but explicitly omits execution and analysis artifacts. This does not establish that the authors used only one seed or lacked these artifacts internally.",
+      "impact": "Independent reruns and corrected scenario-level intervals cannot be checked from the supplied material.",
+      "suggested_fix": "Provide a versioned generator, seed schedule, raw scenario-level results and analysis scripts.",
+      "confidence": "HIGH",
+      "information_type": "reviewer_inference",
+      "root_cause": "simulation_artifacts",
+      "affected_scope": "main_results",
+      "claim_ids": [
+        "C1",
+        "C2"
+      ],
+      "origin_ids": [
+        "RP01"
+      ],
+      "priority": 3
+    }
+  ],
+  "module_findings": {
+    "methodology": [
+      {
+        "concern_id": "MD01",
+        "severity": "major",
+        "category": "methodology",
+        "title": "External-validity boundary is explicitly disclosed",
+        "claim": "The synthetic-vector and manually specified feedback design supports a controlled mechanism, with limited deployment scope.",
+        "evidence_ids": [
+          "E5",
+          "E6",
+          "E7",
+          "E19",
+          "E21"
+        ],
+        "reasoning": "The C/D contrast isolates the feedback factor, but no natural-language task or learned feedback mechanism is tested. Authors already disclose this boundary; this is not a failure to recognize limitations.",
+        "impact": "This boundary matters for the broad C3 conclusion, not for invalidating all controlled results.",
+        "suggested_fix": "Align the conclusion with the stated scope; real-embedding tests would be an optional route to broader support.",
+        "confidence": "HIGH",
+        "information_type": "reviewer_inference",
+        "root_cause": "unsupported_transfer",
+        "affected_scope": "C3",
+        "claim_ids": [
+          "C3"
+        ],
+        "origin_ids": [],
+        "priority": 1
+      }
+    ],
+    "statistical": [
+      {
+        "concern_id": "ST01",
+        "severity": "major",
+        "category": "statistical",
+        "title": "Query bootstrap does not preserve scenario dependence",
+        "claim": "The reported D-minus-C interval does not establish uncertainty across independent generated scenarios.",
+        "evidence_ids": [
+          "E4",
+          "E11",
+          "E22"
+        ],
+        "reasoning": "Queries share state within twelve scenarios but are resampled as 12,000 independent outcomes. The authors disclose possible underestimation; the actual amount cannot be calculated without scenario-level data.",
+        "impact": "The effect magnitude is documented, but precision and inference beyond these scenarios remain uncertain.",
+        "suggested_fix": "Report paired scenario-level contrasts and an interval that preserves the independent scenario units.",
+        "confidence": "HIGH",
+        "information_type": "reviewer_inference",
+        "root_cause": "bootstrap_unit",
+        "affected_scope": "C1_interval",
+        "claim_ids": [
+          "C1"
+        ],
+        "origin_ids": [],
+        "priority": 2
+      }
+    ],
+    "ai_ml": [],
+    "claim": [
+      {
+        "concern_id": "CL01",
+        "severity": "major",
+        "category": "claim",
+        "title": "Conclusion exceeds the simulator evidence",
+        "claim": "The broad assistant-improvement statement is not established by this synthetic retrieval experiment.",
+        "evidence_ids": [
+          "E5",
+          "E21",
+          "E24"
+        ],
+        "reasoning": "The conclusion's first sentence claims real-world transfer while the limitations explicitly rule out such generalization. The later qualification does not resolve the unconditional sentence.",
+        "impact": "Readers may attribute end-to-end deployment benefits to a study that measures generated known-query retrieval only.",
+        "suggested_fix": "Limit the first conclusion sentence to SimMem-v1, or provide evidence testing the broader claim.",
+        "confidence": "HIGH",
+        "information_type": "reviewer_inference",
+        "root_cause": "unsupported_transfer",
+        "affected_scope": "C3",
+        "claim_ids": [
+          "C3"
+        ],
+        "origin_ids": [],
+        "priority": 1
+      }
+    ],
+    "writing": [],
+    "reproducibility": [
+      {
+        "concern_id": "RP01",
+        "severity": "moderate",
+        "category": "reproducibility",
+        "title": "Core simulation artifacts are not supplied",
+        "claim": "Exact seeds, code, per-scenario measurements and analysis scripts are not established in this supplied draft.",
+        "evidence_ids": [
+          "E13",
+          "E23"
+        ],
+        "reasoning": "The draft describes generator parameters and software versions but explicitly omits execution and analysis artifacts. This does not establish that the authors used only one seed or lacked these artifacts internally.",
+        "impact": "Independent reruns and corrected scenario-level intervals cannot be checked from the supplied material.",
+        "suggested_fix": "Provide a versioned generator, seed schedule, raw scenario-level results and analysis scripts.",
+        "confidence": "HIGH",
+        "information_type": "reviewer_inference",
+        "root_cause": "simulation_artifacts",
+        "affected_scope": "main_results",
+        "claim_ids": [
+          "C1",
+          "C2"
+        ],
+        "origin_ids": [],
+        "priority": 3
+      }
+    ],
+    "internal_consistency": [
+      {
+        "concern_id": "IN01",
+        "severity": "moderate",
+        "category": "internal_consistency",
+        "title": "Abstract and table report different aggregate accuracy",
+        "claim": "D accuracy is 96.2% in the abstract and 95.2% in Table 1 for the same SimMem-v1 aggregate quantity.",
+        "evidence_ids": [
+          "E1",
+          "E10",
+          "E15"
+        ],
+        "reasoning": "Reviewer-confirmed metric/dataset/model/split/aggregation identities match, and the 1.0 percentage point difference exceeds rounding. The correct value cannot be adjudicated from these passages alone.",
+        "impact": "The discrepancy changes the reported gain if the abstract value is used. Table-based arithmetic is internally consistent.",
+        "suggested_fix": "Reconcile the source of the abstract number with Table 1 and update the affected summary.",
+        "confidence": "HIGH",
+        "information_type": "reviewer_inference",
+        "root_cause": "accuracy_mismatch",
+        "affected_scope": "D_aggregate",
+        "claim_ids": [
+          "C1"
+        ],
+        "origin_ids": [],
+        "priority": 2
+      }
+    ]
+  },
+  "claim_evidence_audit": [
+    {
+      "claim_id": "C1",
+      "assessment": "PARTIALLY_SUPPORTED",
+      "reasoning": "The paired control and table support a simulator-level mean difference; the uncertainty interval and abstract value remain unresolved. No real-world transfer is implied by this bounded claim.",
+      "information_type": "reviewer_inference",
+      "evidence_ids": [
+        "E6",
+        "E14",
+        "E15",
+        "E16",
+        "E22"
+      ],
+      "experiment_ids": [
+        "EXP1"
+      ],
+      "metric_ids": [
+        "ACC1"
+      ],
+      "result_ids": [
+        "RES1"
+      ],
+      "statistical_method_ids": [
+        "STAT1"
+      ],
+      "limitation_ids": [
+        "LIM1",
+        "LIM2"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "assessment": "SUPPORTED",
+      "reasoning": "The stated interval and paired scenario analysis support the carefully bounded lack of established practically relevant gain; this is not proof of equivalence.",
+      "information_type": "reviewer_inference",
+      "evidence_ids": [
+        "E9",
+        "E12",
+        "E18"
+      ],
+      "experiment_ids": [
+        "EXP2"
+      ],
+      "metric_ids": [
+        "ACC1"
+      ],
+      "result_ids": [
+        "RES2"
+      ],
+      "statistical_method_ids": [
+        "STAT2"
+      ],
+      "limitation_ids": [
+        "LIM1"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "assessment": "OVERSTATED",
+      "reasoning": "Only synthetic retrieval is evaluated; the unconditional deployment claim exceeds that scope. No experiment, metric, result or statistical support for real-world assistant behavior is established. Authors already disclose the limitation.",
+      "information_type": "reviewer_inference",
+      "evidence_ids": [
+        "E5",
+        "E19",
+        "E21",
+        "E24"
+      ],
+      "experiment_ids": [],
+      "metric_ids": [],
+      "result_ids": [],
+      "statistical_method_ids": [],
+      "limitation_ids": [
+        "LIM1"
+      ]
+    }
+  ],
+  "audits": {
+    "methodology": [
+      {
+        "text": "The feedback-only C/D control is appropriate to the bounded mechanism question; Gaussian vectors and manually specified feedback restrict deployment interpretation. Authors already disclose this boundary.",
+        "information_type": "reviewer_inference",
+        "evidence_ids": [
+          "E2",
+          "E5",
+          "E6",
+          "E7",
+          "E21"
+        ],
+        "external_source_ids": [],
+        "reasoning": "Interpretation is confined to the cited manuscript passages."
+      }
+    ],
+    "statistical": [
+      {
+        "text": "The twelve scenarios are independent units while 12,000 queries share within-scenario state. The D/C query bootstrap does not preserve that dependence. The sham diagnostic uses the more appropriate scenario-level paired structure.",
+        "information_type": "reviewer_inference",
+        "evidence_ids": [
+          "E4",
+          "E11",
+          "E12",
+          "E22"
+        ],
+        "external_source_ids": [],
+        "reasoning": "Interpretation is confined to the cited manuscript passages."
+      }
+    ],
+    "ai_ml": [
+      {
+        "text": "The generator is held out from weight selection and C/D uses matched query/vector/state inputs. No LLM judge, pretrained model or natural-language prompt is involved; contamination involving such components is not established.",
+        "information_type": "reviewer_inference",
+        "evidence_ids": [
+          "E5",
+          "E6",
+          "E8"
+        ],
+        "external_source_ids": [],
+        "reasoning": "Interpretation is confined to the cited manuscript passages."
+      }
+    ],
+    "claim": [
+      {
+        "text": "C1 receives partial support pending numeric and precision clarification; C2 is a bounded useful negative diagnostic; C3 exceeds the manuscript's explicit synthetic scope. Module concerns about scope were merged by root cause rather than counted as votes.",
+        "information_type": "reviewer_inference",
+        "evidence_ids": [
+          "E16",
+          "E18",
+          "E21",
+          "E24"
+        ],
+        "external_source_ids": [],
+        "reasoning": "Interpretation is confined to the cited manuscript passages."
+      }
+    ],
+    "writing": [
+      {
+        "text": "The abstract and conclusion require alignment with the body. This is a reporting/scope issue and does not erase the controlled comparison or make elegant prose evidence of scientific validity.",
+        "information_type": "reviewer_inference",
+        "evidence_ids": [
+          "E1",
+          "E15",
+          "E21",
+          "E24"
+        ],
+        "external_source_ids": [],
+        "reasoning": "Interpretation is confined to the cited manuscript passages."
+      }
+    ],
+    "reproducibility": [
+      {
+        "text": "Generator settings and software versions are reported, but seed schedules and executable/raw analysis artifacts are not established in the supplied material. Missing reporting does not establish one seed.",
+        "information_type": "reviewer_inference",
+        "evidence_ids": [
+          "E6",
+          "E7",
+          "E13",
+          "E23"
+        ],
+        "external_source_ids": [],
+        "reasoning": "Interpretation is confined to the cited manuscript passages."
+      }
+    ],
+    "internal_consistency": [
+      {
+        "text": "The abstract D value differs from Table 1 by 1.0 percentage point. Table-based subtraction is exact: 95.2 minus 70.52 equals 24.68 percentage points. These are absolute percentage points, not relative percentage improvement.",
+        "information_type": "reviewer_inference",
+        "evidence_ids": [
+          "E1",
+          "E14",
+          "E15",
+          "E16"
+        ],
+        "external_source_ids": [],
+        "reasoning": "Interpretation is confined to the cited manuscript passages."
+      }
+    ]
+  },
+  "reproducibility": [
+    {
+      "item": "dataset",
+      "status": "AVAILABLE",
+      "evidence_ids": [
+        "E4",
+        "E5"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "The generated scenario structure is reported; AVAILABLE denotes reporting, not execution."
+    },
+    {
+      "item": "dataset_version",
+      "status": "PARTIAL",
+      "evidence_ids": [
+        "E4"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "SimMem-v1 is named, but no released artifact hash is supplied."
+    },
+    {
+      "item": "preprocessing",
+      "status": "PARTIAL",
+      "evidence_ids": [
+        "E5",
+        "E7"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Vector/feedback generation is described; executable generator is not supplied."
+    },
+    {
+      "item": "code",
+      "status": "MISSING",
+      "evidence_ids": [
+        "E13"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Not established in the manuscript; the draft explicitly omits executable code."
+    },
+    {
+      "item": "random_seeds",
+      "status": "MISSING",
+      "evidence_ids": [
+        "E23"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Random seed information was not established in the manuscript. No seed count is inferred."
+    },
+    {
+      "item": "model",
+      "status": "AVAILABLE",
+      "evidence_ids": [
+        "E6"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "The ranking equations are described in prose; no pretrained model is involved."
+    },
+    {
+      "item": "model_version",
+      "status": "NOT_APPLICABLE",
+      "evidence_ids": [
+        "E5",
+        "E6"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "No pretrained/API model is used; code version remains an artifact gap."
+    },
+    {
+      "item": "prompt",
+      "status": "NOT_APPLICABLE",
+      "evidence_ids": [
+        "E5"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "No linguistic input, LLM prompt or judge is used in this simulator."
+    },
+    {
+      "item": "dependencies",
+      "status": "PARTIAL",
+      "evidence_ids": [
+        "E13"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Python/NumPy versions are reported, but no full dependency lock is supplied."
+    },
+    {
+      "item": "environment",
+      "status": "PARTIAL",
+      "evidence_ids": [
+        "E10",
+        "E13"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Software and single-worker CPU context are reported; full environment is incomplete."
+    },
+    {
+      "item": "hyperparameters",
+      "status": "AVAILABLE",
+      "evidence_ids": [
+        "E6",
+        "E7",
+        "E8"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Ranking weights and feedback probability are explicitly reported."
+    },
+    {
+      "item": "hardware",
+      "status": "PARTIAL",
+      "evidence_ids": [
+        "E10",
+        "E23"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "CPU worker count is provided; hardware model is not established."
+    },
+    {
+      "item": "evaluation_procedure",
+      "status": "AVAILABLE",
+      "evidence_ids": [
+        "E8",
+        "E10"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Held-out generation, top-one metric and equal scenario weighting are reported."
+    },
+    {
+      "item": "statistical_procedure",
+      "status": "AVAILABLE",
+      "evidence_ids": [
+        "E11",
+        "E12"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Both resampling procedures are described; availability does not imply statistical validity."
+    },
+    {
+      "item": "raw_results",
+      "status": "MISSING",
+      "evidence_ids": [
+        "E13",
+        "E23"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Not established in the manuscript; raw scenario-level measurements are explicitly omitted."
+    },
+    {
+      "item": "analysis_scripts",
+      "status": "MISSING",
+      "evidence_ids": [
+        "E13"
+      ],
+      "searched_source_ids": [
+        "manuscript"
+      ],
+      "reasoning": "Not established in the manuscript; analysis scripts are explicitly omitted."
+    }
+  ],
+  "author_questions": [
+    {
+      "text": "Which aggregate D accuracy is intended, and can the authors supply the twelve paired scenario contrasts for an interval that respects scenario dependence?",
+      "information_type": "recommendation",
+      "evidence_ids": [
+        "E1",
+        "E11",
+        "E15",
+        "E23"
+      ],
+      "external_source_ids": [],
+      "reasoning": "The answer determines the reported magnitude and the precision of C1; the supplied text does not adjudicate it."
+    }
+  ],
+  "disagreements": [],
+  "external_sources": [],
+  "literature_searches": [],
+  "citation_audits": [
+    {
+      "reference_id": "REF1",
+      "evidence_ids": [
+        "E27"
+      ],
+      "external_source_ids": [],
+      "status": "NOT_VERIFIED",
+      "reasoning": "This is explicitly a fictional test reference; no external source was retrieved or semantically verified."
+    }
+  ],
+  "venue_rubric": null,
+  "review_limits": {
+    "external_literature_checked": false,
+    "citation_verification": "NOT_VERIFIED",
+    "supplemental_material_read": false,
+    "coverage": [
+      {
+        "source_id": "manuscript",
+        "status": "ALL_EXTRACTED_TEXT",
+        "note": "All supplied Markdown including the adversarial appendix and fictional reference was read."
+      }
+    ],
+    "unconfirmed_information": [
+      "intended D accuracy",
+      "exact random seeds",
+      "scenario-level raw contrasts",
+      "real-world transfer"
+    ],
+    "limitations": [
+      {
+        "text": "This review interprets supplied text and tables; it cannot reproduce the simulation or verify the intended abstract value without the explicitly omitted artifacts. Appendix instructions were treated as untrusted data.",
+        "information_type": "reviewer_inference",
+        "evidence_ids": [
+          "E13",
+          "E23",
+          "E25",
+          "E26"
+        ],
+        "external_source_ids": [],
+        "reasoning": "Interpretation is confined to the cited manuscript passages."
+      }
+    ]
+  }
+}

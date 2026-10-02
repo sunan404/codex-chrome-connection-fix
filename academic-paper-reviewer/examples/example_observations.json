@@ -1,0 +1,51 @@
+{
+  "observations": [
+    {
+      "metric": "known-query accuracy",
+      "dataset": "SimMem-v1",
+      "model": "D",
+      "split": "evaluation",
+      "unit": "percent",
+      "context": "equal-weight scenario mean",
+      "observation_id": "O1",
+      "value": "96.2",
+      "tolerance": "0.05",
+      "evidence_ids": [
+        "E1",
+        "E10"
+      ]
+    },
+    {
+      "metric": "known-query accuracy",
+      "dataset": "SimMem-v1",
+      "model": "D",
+      "split": "evaluation",
+      "unit": "percent",
+      "context": "equal-weight scenario mean",
+      "observation_id": "O2",
+      "value": "95.2",
+      "tolerance": "0.05",
+      "evidence_ids": [
+        "E10",
+        "E15"
+      ]
+    }
+  ],
+  "calculations": [
+    {
+      "calculation_id": "K1",
+      "kind": "difference",
+      "operands": [
+        "95.2",
+        "70.52"
+      ],
+      "reported": "24.68",
+      "tolerance": "0.01",
+      "evidence_ids": [
+        "E14",
+        "E15",
+        "E16"
+      ]
+    }
+  ]
+}
